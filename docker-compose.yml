@@ -1,0 +1,31 @@
+version: '2.1'
+
+volumes:
+  netdatacache:
+  netdatalib:
+  pathfinder:
+
+services:
+  starknet-pathfinder:
+    build: ./starknet
+    ports:
+      - "9545:9545"
+   volumes:
+     - pathfinder:/usr/share/pathfinder
+  netdata:
+    build: ./netdata
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    ports:
+      - "19999:19999"
+    labels:
+      - "io.balena.features.balena-socket=1"
+      - "io.balena.features.procfs=1"
+      - "io.balena.features.supervisor-api=1"
+      - "io.balena.features.sysfs=1"
+    volumes:
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdatav

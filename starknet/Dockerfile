@@ -1,19 +1,72 @@
-FROM debian:latest
-ARG PATHFINDER_VERSION=v0.1.4-alpha
+########################################
+# Stage 1: Build the pathfinder binary #
+########################################
+FROM rust:1.59-alpine AS rust-builder
 
-# Install depedencies
-RUN apt-get update && apt-get --no-install-recommends install -y curl wget vim python3-pip build-essential libssl-dev libffi-dev python3-dev libgmp-dev fastecdsa pkg-config
+RUN apk add --no-cache musl-dev gcc openssl-dev
 
-# Install rust related
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && rustup update stable
-# Add .cargo/bin to PATH
-ENV PATH="/root/.cargo/bin:${PATH}"
+WORKDIR /usr/src/pathfinder
 
-# Install pathfinder
-RUN git clone --branch $PATHFINDER_VERSION  https://github.com/eqlabs/pathfinder.git pathfinder && cd pathfinder && cargo build --release --bin pathfinder && pip install --upgrade pip && pip install -r requirements-dev.txt
+# Build only the dependencies first. This utilizes
+# container layer caching for Rust builds
+RUN mkdir crates
+RUN cargo new --lib crates/pedersen
+# Correct: --lib. We'll handle the binary later.
+RUN cargo new --lib crates/pathfinder
+COPY Cargo.toml Cargo.toml
 
-# Copy entrypoing script to container
-COPY start-node.sh /usr/bin/start-node
-# Make script executable
-RUN chmod +x /usr/bin/start-node
-ENTRYPOINT start-node
+COPY crates/pathfinder/Cargo.toml crates/pathfinder/Cargo.toml
+COPY crates/pedersen/Cargo.toml crates/pedersen/Cargo.toml
+COPY crates/pedersen/benches crates/pedersen/benches
+
+RUN RUSTFLAGS='-L/usr/lib -Ctarget-feature=-crt-static' cargo build --release
+
+
+# Compile the actual libraries and binary now
+COPY . .
+
+# Mark these for re-compilation
+RUN touch crates/pathfinder/src/lib.rs
+RUN touch crates/pedersen/src/lib.rs
+
+RUN RUSTFLAGS='-L/usr/lib -Ctarget-feature=-crt-static' cargo build --release --bin pathfinder
+
+#######################################
+# Stage 2: Build the Python libraries #
+#######################################
+FROM python:3.8-alpine AS python-builder
+
+RUN apk add --no-cache gcc musl-dev gmp-dev g++
+
+WORKDIR /usr/share/pathfinder
+COPY py py
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install -r py/requirements-dev.txt
+
+# This reduces the size of the python libs by about 50%
+ENV PY_PATH=/usr/local/lib/python3.8/
+RUN find ${PY_PATH} -type d -a -name test -exec rm -rf '{}' +
+RUN find ${PY_PATH} -type d -a -name tests  -exec rm -rf '{}' +
+RUN find ${PY_PATH} -type f -a -name '*.pyc' -exec rm -rf '{}' +
+RUN find ${PY_PATH} -type f -a -name '*.pyo' -exec rm -rf '{}' +
+
+#######################
+# Final Stage: Runner #
+#######################
+FROM python:3.8-alpine AS runner
+
+RUN apk add --no-cache tini
+
+COPY --from=rust-builder ["/usr/lib/libstdc++.so.6", "/usr/lib/libgcc_s.so.1", "/usr/lib/libgmp.so.10", "/usr/lib/" ]
+COPY --from=rust-builder /usr/src/pathfinder/target/x86_64-unknown-linux-musl/release/pathfinder /usr/local/bin/pathfinder
+COPY --from=python-builder /usr/local/lib/python3.8/ /usr/local/lib/python3.8/
+
+# Create directory and volume for persistent data
+RUN mkdir -p /usr/share/pathfinder/data
+RUN chown 1000:1000 /usr/share/pathfinder/data
+VOLUME /usr/share/pathfinder/data
+
+USER 1000:1000
+WORKDIR /usr/share/pathfinder/data
+
+ENTRYPOINT ["tini", "--", "/usr/local/bin/pathfinder", 'http-rpc="$HTTP_RPC"', 'ethereum.url="$ETHEREUM_RPC_URL"', 'ethereum.password="$PASSWORD"']
