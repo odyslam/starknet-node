@@ -1,6 +1,6 @@
 # Starknet Node
 
-![deploy-button](https://user-images.githubusercontent.com/13405632/158033926-28a1ff8e-8809-42b4-abbc-d594ae9aaf8d.svg)
+![deploy_node_with_balena](https://user-images.githubusercontent.com/13405632/158033973-3cde7cc1-9596-4a4e-bcfe-2221b733df22.svg)
 
 The easiest way to deploy a Starknet Node on a Raspberry pi and begin verifying L2 state transitions, directly from your Raspberry pi!
 
