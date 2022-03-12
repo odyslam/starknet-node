@@ -1,4 +1,4 @@
-name starknetNode
+name: starknetNode
 type: sw.application
 description: >-
   A StarkNet full node giving you a safe view into StarkNet, a zero-knowledge rollup for Ethereum.
