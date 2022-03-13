@@ -18,7 +18,7 @@ data:
     - ETHEREUM_RPC_URL: "REPLACE_ME"
     - PASSWORD: ""
     - IDLE: 0
-  defaultDeviceType: raspberry-pi
+  defaultDeviceType: raspberry-pi4-64
   supportedDeviceTypes:
     - raspberrypi3
     - raspberrypi4-64
