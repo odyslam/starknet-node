@@ -15,8 +15,9 @@ assets:
 data:
   applicationEnvironmentVariables:
     - HTTP_RPC: "0.0.0.0:9545"
-    - ETHEREUM_RPC_URL: REPLACE_ME
-    - PASSWORD: starknet
+    - ETHEREUM_RPC_URL: "REPLACE_ME"
+    - PASSWORD: ""
+    - IDLE: 0
   defaultDeviceType: raspberry-pi
   supportedDeviceTypes:
     - raspberrypi3
