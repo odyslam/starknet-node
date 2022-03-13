@@ -8,6 +8,8 @@ The easiest way to deploy a Starknet Node on a Raspberry pi and begin verifying 
 - Click on "Deploy Node with balena"
 - Create an account
 - Follow the instructions. At the Application environment variables, replace the `REPLACE_ME` value, of the `ETH_RPC_URL` variable, with the endpoint you noted before.
+  - Click on `advanced` to see the env variables that you can customize
+  - Change the device type from the default (Raspberry pi 4 64) to your device (e.g Intel Nuc x86)
 - If you want, you can also populate `ETH_PASSWORD` with the password of the `ETH_RPC_URL` (if it exists) and `HTTP_RPC` with an `IP:PORT` value for the node to listen for RPC requests.
 - Download the OS image and format an SD card with it
 - Insert the card to the Raspbery pi, connect it to the power and the internet, let it boot.
