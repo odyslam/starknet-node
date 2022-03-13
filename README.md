@@ -20,9 +20,9 @@ You can also manage your device via balena-cloud:
 
 ## Join the fleet
 
-This is an open fleet! All devices that join the fleet will run the latest software and placed in a fleet of starknet nodes!
+This is an open fleet! All devices that join the fleet will run the latest software and placed in a fleet of starknet nodes.
 
-[Join](https://hub.balena.io/gh_odyslam/starknet-node)
+[View the fleet](https://hub.balena.io/gh_odyslam/starknet-node) on balenaHub. The `deploy` button above and `join` in the balenaHub page will produce the same result. You will download an OS image that will automatically add your device to the fleet and download the application (Starknet Node).
 
 ![](https://user-images.githubusercontent.com/13405632/158053257-e33c2c77-b620-4dea-83de-e6612301e512.png)
 
@@ -53,5 +53,3 @@ You may want to explore **boot from SSD**, as that would speed-up considerably t
 
 - [Run your first Starknet Node, by DZupp](https://mirror.xyz/0x83857601C1cFA057F2576b343c563BDB9A4C9975/8HfjYCkbid2vlayxyPtSD9_wtb9a-wHb1uOENsAOwng)
 - [Pathfinder](https://github.com/eqlabs/pathfinder)
-
--
