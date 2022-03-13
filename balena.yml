@@ -18,10 +18,10 @@ data:
     - ETHEREUM_RPC_URL: "REPLACE_ME"
     - PASSWORD: ""
     - IDLE: 0
-  defaultDeviceType: raspberry-pi
+  defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi3
     - raspberrypi4-64
     - raspberrypi4
     - intel-nuc
-version: 3.5.2
+version: 1.0.0
