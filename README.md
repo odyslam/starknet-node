@@ -42,6 +42,16 @@ Read more about [Open Fleets](https://www.balena.io/blog/introducing-open-fleets
 - `ETH_PASSWORD`: Password for the ethereum endpoint. Default is empty.
 - `IDLE`: Helper env variable that will idle the `starknet-pathfinder` container instead of running pathfinder. That way, you can `ssh` into the container and debug/test. Default: `0`.
 
+## Test a new device
+
+If you have a device that's not listed in the supported ones, it's very easy to test it!
+
+Follow the instructions and at the following modal, simply search your device (e.g Raspberry pi 3).
+
+![](https://user-images.githubusercontent.com/13405632/158076094-8044d2b0-85dc-4940-acb5-ea27a8551a47.png)
+
+Install it normally and then go back to your balena cloud dashboard and see the logs window. If everything works as expected, come back to this repository and open an issue to let me know. I will add the device to the list of supported ones!
+
 ## Resources
 
 - [Deploy with balena](https://www.balena.io/docs/learn/deploy/deploy-with-balena-button/)
