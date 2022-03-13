@@ -14,6 +14,16 @@ The easiest way to deploy a Starknet Node on a Raspberry pi and begin verifying 
 
 balena will automatically build the application from the repository, package it into Docker containers and deliver it to your Raspberry pi to run it. Because the application is compiled on servers and the container images are delivered ready to the device, it will be **much** faster than having to compile the Node on the device itelf.
 
+## Join the fleet
+
+This is an open fleet! All devices that join the fleet will run the latest software and placed in a fleet of starknet nodes!
+
+[Join](https://hub.balena.io/gh_odyslam/starknet-node)
+
+![](https://user-images.githubusercontent.com/13405632/158053257-e33c2c77-b620-4dea-83de-e6612301e512.png)
+
+Read more about [Open Fleets](https://www.balena.io/blog/introducing-open-fleets-and-self-submitted-apps-and-blocks-on-balenahub/#:~:text=Set%20the%20project%20as%20an,set%20your%20app%20to%20public!).
+
 ## Services
 
 - `starknet-node`: The starknet node. You can access it's RPC on port `9545`.
