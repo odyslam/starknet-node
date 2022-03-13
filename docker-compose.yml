@@ -10,8 +10,8 @@ services:
     build: ./starknet
     ports:
       - "9545:9545"
-   volumes:
-     - pathfinder:/usr/share/pathfinder
+    volumes:
+      - pathfinder:/usr/share/pathfinder
   netdata:
     build: ./netdata
     privileged: true
