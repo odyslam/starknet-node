@@ -1,0 +1,27 @@
+name: starknetNode
+type: sw.application
+description: >-
+  A StarkNet full node giving you a safe view into StarkNet, a zero-knowledge rollup for Ethereum.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/odyslam/starknet-node'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://starkware.co/wp-content/uploads/2021/05/StarkNet-Icon.png
+data:
+  applicationEnvironmentVariables:
+    - HTTP_RPC: "0.0.0.0:9545"
+    - ETHEREUM_RPC_URL: "REPLACE_ME"
+    - PASSWORD: ""
+    - IDLE: 0
+  defaultDeviceType: raspberry-pi
+  supportedDeviceTypes:
+    - raspberrypi3
+    - raspberrypi4-64
+    - raspberrypi4
+    - intel-nuc
+version: 3.5.2
