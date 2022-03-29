@@ -20,8 +20,8 @@ data:
     - IDLE: 0
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
-    - raspberrypi3
     - raspberrypi4-64
-    - raspberrypi4
+    - generic-aarch64	
+    - genericx86-64-ext
     - intel-nuc
 version: 1.0.0
