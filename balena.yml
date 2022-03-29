@@ -15,7 +15,7 @@ assets:
 data:
   applicationEnvironmentVariables:
     - HTTP_RPC: "0.0.0.0:9545"
-    - ETHEREUM_RPC_URL: "REPLACE_ME"
+    - ETH_RPC_URL: "REPLACE_ME"
     - PASSWORD: ""
     - IDLE: 0
   defaultDeviceType: raspberrypi4-64
