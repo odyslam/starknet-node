@@ -7,7 +7,7 @@ volumes:
 
 services:
   starknet-pathfinder:
-    build: ./starknet
+    image: eqlabs/pathfinder:latest
     ports:
       - "9545:9545"
     volumes:
