@@ -15,9 +15,10 @@ assets:
 data:
   applicationEnvironmentVariables:
     - HTTP_RPC: "0.0.0.0:9545"
-    - ETH_RPC_URL: "REPLACE_ME"
+    - ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
     - PASSWORD: ""
     - IDLE: 0
+    - LOCATION: "ON"
     - LOCATION_API: "https://google.com"
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
