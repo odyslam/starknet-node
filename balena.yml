@@ -15,13 +15,18 @@ assets:
 data:
   applicationEnvironmentVariables:
     - HTTP_RPC: "0.0.0.0:9545"
-    - ETH_RPC_URL: "REPLACE_ME"
+    - ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
     - PASSWORD: ""
     - IDLE: 0
+    - LOCATION: "ON"
+    - LOCATION_API: "https://starknet.io/rpi-node/"
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi4-64
-    - generic-aarch64	
+    - raspberrypi3-64
+    - raspberrypi400-64
+    - raspberrypi0-2w-64
+    - generic-aarch64
     - genericx86-64-ext
     - intel-nuc
-version: 1.0.0
+version: 2.0.0

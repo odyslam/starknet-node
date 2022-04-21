@@ -7,11 +7,13 @@ volumes:
 
 services:
   starknet-pathfinder:
-    image: eqlabs/pathfinder:latest
+    build: ./pathfinder
     ports:
       - "9545:9545"
     volumes:
       - pathfinder:/usr/share/pathfinder
+    environment:
+      ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/4Y_wlm-04oTrBmdqATgedTJcRqwLMEW6"
   netdata:
     build: ./netdata
     privileged: true
