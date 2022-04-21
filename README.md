@@ -4,14 +4,18 @@
 
 The easiest way to deploy a Starknet Node on a Raspberry pi and begin verifying L2 state transitions, directly from your Raspberry Pi!
 
-- Find an Ethereum RPC endpoint link (Infura, Alchemy, Pokt, etc.). Note it down.
 - Click on "Deploy Node with balena"
-- Create an account
-- Follow the instructions.
-  - Change the device type from the default (Raspberry pi 4 64) to your device (e.g Intel Nuc x86)
-- Download the OS image and format an SD card with it
-- Insert the card to the Raspbery pi, connect it to the power and the internet, let it boot.
-- The container will restart and your node will be able to pull the state of blockchain from your RPC endpoint.
+- Create a balena-cloud account
+- In the "Create and deploy to fleet" modal, choose your default device type (e.g Raspberry Pi 400)
+- Click on "Create and Deploy"
+- Click on "Add a device"
+- Click on "Flash" and follow the instructions to download and install balena Etcher.
+- If Etcher doesn't open automatically with our OS loaded, click the arrow in the button and download balenaOS
+- Follow the instructions of the modal to "flash" the OS in the storage medium (e.g SD card)
+- Click on "Wifi + Ethernet" in the "Network Connection" section of the modal. Type the credentials of your wifi network. That way, the device will connect automatically to wifi
+- Insert the card to the Raspbery pi, connect power + ethernet (if you didn't configure wifi)
+- Let it boot 🔜
+- Visit balena-cloud and view the logs of the device
 
 balena will automatically build the application from the repository, package it into Docker containers and deliver it to your Raspberry pi to run it. The fact that the application is compiled in cloud servers and then delivered to the device, means that the build process is **much** faster than compiling on the device itself.
 
