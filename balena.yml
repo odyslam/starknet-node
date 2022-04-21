@@ -23,7 +23,10 @@ data:
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi4-64
+    - raspberrypi3-64
+    - raspberrypi400-64
+    - raspberrypi0-2w-64
     - generic-aarch64
     - genericx86-64-ext
     - intel-nuc
-version: 1.0.0
+version: 2.0.0
