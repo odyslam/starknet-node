@@ -14,12 +14,12 @@ assets:
         https://starkware.co/wp-content/uploads/2021/05/StarkNet-Icon.png
 data:
   applicationEnvironmentVariables:
-    - HTTP_RPC: "0.0.0.0:9545"
-    - ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
-    - PASSWORD: ""
-    - IDLE: 0
-    - LOCATION: "ON"
-    - LOCATION_API: "https://starknet.io/rpi-node/"
+    - PATHFINDER_HTTP_RPC_ADDRESS: "0.0.0.0:9545"
+    - PATHFINDER_ETHEREUM_API_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
+    - PATHFINDER_ETHEREUM_API_PASSWORD: ""
+    - NODE_IDLE: 0
+    - NODE_LOCATION: "ON"
+    - NODE_LOCATION_API: "https://starknet.io/rpi-node/"
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi4-64
