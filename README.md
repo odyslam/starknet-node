@@ -33,7 +33,7 @@ You can also manage your device via balena-cloud:
 - `RPC_URL`: IP and port at which the node accepts RPC requests. Default: `0.0.0.0:9545`
 - `ETH_PASSWORD`: Password for the ethereum endpoint. Default is empty.
 - `IDLE`: Helper env variable that will idle the `starknet-pathfinder` container instead of running pathfinder. That way, you can `ssh` into the container and debug/test. Default: `0`.
-- `LOCATION`: If `ON`, the device pings on regular intervals a website owned and operated by Starkware. This is done so that the approximate location of the Node may be infered from the HTTP request. Starkware uses this information to create a map of Starknet Nodes, emphasizing the importance of being able to run a node without the need of powerful hardware. It's an effort to show that Starknet is decentralized in a very important way, being able to be verified by thousand of small devices from various parts of the world. Starkware is not sharing this information with no 3rd party and the actual HTTP request does not transmit any information about the device. The inference of the location of the device is solely based on the IP that the HTTP request originates from.
+- `LOCATION`: If `ON`, the device pings a StarkWare website at regular intervals, so that the approximate Node location may be inferred from the HTTP request. StarkWare uses this information to create a map of StarkNet Nodes. StarkWare will not share this information with any 3rd party, and the actual HTTP request does not transmit any information about the device. The location of the device is based solely based on the IP that the HTTP request originates from.
 
 ## Test a new device
 
@@ -43,7 +43,7 @@ Follow the instructions and at the following modal, simply search your device (e
 
 ![](https://user-images.githubusercontent.com/13405632/158076094-8044d2b0-85dc-4940-acb5-ea27a8551a47.png)
 
-Install it normally and then go back to your balena cloud dashboard and see the logs window. If everything works as expected, come back to this repository and open an issue to let me know. I will add the device to the list of supported ones!
+Install it and then go back to your balena-cloud dashboard to view the logs. If everything works as expected, return to this repository and open an issue to let me know.
 
 ## Resources
 
@@ -51,7 +51,7 @@ Install it normally and then go back to your balena cloud dashboard and see the 
 - [What is balena](https://www.balena.io/what-is-balena/)
 - [Netdata](https://github.com/netdata/netdata)
 
-You may want to explore **boot from SSD**, as that would speed-up considerably the process of syncing. The greatest bottleneck in a Raspberry pi is the SD card, which not only is slower than an SSD, but also prone to corruptions.
+You may want to explore **boot from SSD**, as that would considerably speed-up the process of syncing. The greatest bottleneck in a Raspberry pi is the SD card, as it's also much slower than expected for a storage medium, but also is prone to corruptions.
 - [Balena - boot from SSD](https://forums.balena.io/t/how-to-boot-balenaos-on-an-ssd-why-it-matters-and-how-it-works/341836)
 
 ## Kudos
