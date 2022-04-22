@@ -14,8 +14,8 @@ services:
       - pathfinder:/usr/share/pathfinder
     environment:
       PATHFINDER_HTTP_RPC_ADDRESS: "0.0.0.0:9545"
-      PATHFINDER_ETHEREUM_API_URL : "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
-      PATHFINDER_ETHEREUM_API_PASSWORD	: ""
+      PATHFINDER_ETHEREUM_API_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
+      PATHFINDER_ETHEREUM_API_PASSWORD: ""
       NODE_IDLE: 0
       NODE_LOCATION: "ON"
       NODE_LOCATION_API: "https://starknet.io/rpi-node/"
