@@ -17,7 +17,7 @@ The easiest way to deploy a Starknet Node on a Raspberry pi and begin verifying 
 - Let it boot 🔜
 - Visit balena-cloud and view the logs of the device
 
-balena will automatically build the application from the repository, package it into Docker containers and deliver it to your Raspberry pi to run it. The fact that the application is compiled in cloud servers and then delivered to the device, means that the build process is **much** faster than compiling on the device itself.
+balena will automatically build the application from the repository, package it into Docker containers and deliver it to your Raspberry pi to run it. Building the containers on the cloud server is much faster than building them on the device itself.
 
 You can also manage your device via balena-cloud:
 ![image](https://user-images.githubusercontent.com/13405632/158053365-c0d7ac4b-3acf-4cf2-9e36-45b7400027ca.png)
@@ -39,11 +39,11 @@ You can also manage your device via balena-cloud:
 
 It's very easy to test a device that is not shown in the list of supported devices.
 
-Follow the instructions and at the following modal, simply search your device (e.g Raspberry pi 3) and choose the 64bit version of the OS (there is a 64 in the name).
+Follow the instructions as described above and at the modal shown below, search your device (e.g Raspberry pi 3) and choose the 64bit version of the OS (there is a 64 in the name).
 
 ![](https://user-images.githubusercontent.com/13405632/158076094-8044d2b0-85dc-4940-acb5-ea27a8551a47.png)
 
-Install it and then go back to your balena-cloud dashboard to view the logs. If everything works as expected, return to this repository and open an issue to let me know.
+After you finish the installation, visit the cloud dashbord of balena-cloud and see the logs. If everything works as expected, then open a GitHub issues in this repository to let me know.
 
 ## Resources
 
