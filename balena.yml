@@ -14,15 +14,20 @@ assets:
         https://starkware.co/wp-content/uploads/2021/05/StarkNet-Icon.png
 data:
   applicationEnvironmentVariables:
-    - HTTP_RPC: "0.0.0.0:9545"
-    - ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/4Y_wlm-04oTrBmdqATgedTJcRqwLMEW6"
-    - PASSWORD: ""
-    - IDLE: 0
+    - PATHFINDER_HTTP_RPC_ADDRESS: "0.0.0.0:9545"
+    - PATHFINDER_ETHEREUM_API_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
+    - PATHFINDER_ETHEREUM_API_PASSWORD: ""
+    - NODE_IDLE: 0
+    - NODE_LOCATION: "ON"
+    - NODE_LOCATION_API: "https://starknet.io/rpi-node/"
     - CADDY_USERNAME: "starknet"
-  defaultDeviceType: raspberrypi4-64
+  defaultDeviceType: raspberrypi400-64
   supportedDeviceTypes:
     - raspberrypi4-64
+    - raspberrypi3-64
+    - raspberrypi400-64
+    - raspberrypi0-2w-64
     - generic-aarch64
     - genericx86-64-ext
     - intel-nuc
-version: 1.0.0
+version: 2.0.0
