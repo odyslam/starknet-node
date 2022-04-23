@@ -4,7 +4,8 @@ volumes:
   netdatacache:
   netdatalib:
   pathfinder:
-
+  caddy-config:
+  caddy-data:
 services:
   starknet-pathfinder:
     image: eqlabs/pathfinder:latest
@@ -12,6 +13,9 @@ services:
       - "9545:9545"
     volumes:
       - pathfinder:/usr/share/pathfinder
+    environment:
+      ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/4Y_wlm-04oTrBmdqATgedTJcRqwLMEW6"
+      HTTP_RPC: "0.0.0.0:9545"
   netdata:
     build: ./netdata
     privileged: true
@@ -29,3 +33,22 @@ services:
     volumes:
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdatav
+    depends_on:
+      - "starknet-pathfinder"
+  caddy:
+    build: ./caddy
+    restart: 'unless-stopped'
+    ports:
+     - "80:80"
+     - "2019:2019"
+     - "443:443"
+    depends_on: ["netdata", "starknet-pathfinder"]
+    environment:
+      - DOMAIN=starknet.local
+      - PROTOCOL=http
+    labels:
+      - "io.balena.features.supervisor-api=true"
+      - "io.balena.features.balena-api=true"
+    volumes:
+      - caddy-config:/config
+      - caddy-data:/data

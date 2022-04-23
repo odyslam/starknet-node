@@ -1,0 +1,20 @@
+h1 {
+  display: block;
+	text-align:center;
+}
+
+#netdata-charts{
+	margin: auto;
+	width:80%;
+	margin-top:5em;
+	margin-bottom:5em;
+}
+
+#logs {
+	display:block;
+	margin:auto;
+	width: 80%;
+	height: 25em;
+	font-weight: bold;
+}
+

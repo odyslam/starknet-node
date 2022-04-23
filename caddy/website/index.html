@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Starknet Node Dashboard</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📺</text></svg>">
+  <link rel="stylesheet" href="index.css">
+  <script>const netdataTheme = 'slate'</script>
+  <script type="text/javascript" src="../netdata/dashboard.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/balena-sdk@16.19.8/es2015/balena-browser.min.js"></script>
+    <script type="application/javascript">
+        /*****************
+         * NETDATA CONFIGURATION*
+         *****************/
+        ALARM_REFRESH_INTERVAL = 6;
+        DASH_OPTIONS = {
+            graph_width: '40em',
+            graph_height: '20em',
+            chart_width: '10em' // Charts are square
+        }
+      async function balenaSetUp(balenaValue){
+        const balena = balenaSdk.getSdk({
+          apiUrl: "https://api.balena-cloud.com/",
+        });
+        await balena.auth.loginWithToken(balenaValues.balenaToken);
+        return balena
+      }
+      window.onload = async () => {
+        const textarea = document.getElementById('logs');
+        const res = await fetch("balena.json");
+        const balenaValues = await res.json();
+        if (balenaValues.balenaToken == "") {
+            textarea.value = "balena is not detected as the underlying OS of the system. Logs streaming is disabled";
+        } else {
+          balenaSetUp(balenaValues);
+          balena.logs.subscribe(balenaValues.balenaDeviceUUID).then(function(logs) {
+              logs.on('line', function(line) {
+                textarea.value += line;
+              });
+          });
+        };
+      }
+    </script>
+
+</head>
+<body>
+  <div id="index">
+  </div>
+  <div id="netdata-charts">
+    <h1>Pathfinder Metrics</h1>
+    <div data-netdata="pathfinder_Starknet_Node.syncing"></div>
+    <div data-netdata="pathfinder_Starknet_Node.block_number"></div>
+  </div>
+  <h1> Node Logs</h1>
+  <textarea id="logs"></textarea>
+</body>
+</html>

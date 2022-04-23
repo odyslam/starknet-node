@@ -15,13 +15,14 @@ assets:
 data:
   applicationEnvironmentVariables:
     - HTTP_RPC: "0.0.0.0:9545"
-    - ETH_RPC_URL: "REPLACE_ME"
+    - ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/4Y_wlm-04oTrBmdqATgedTJcRqwLMEW6"
     - PASSWORD: ""
     - IDLE: 0
+    - CADDY_USERNAME: "starknet"
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi4-64
-    - generic-aarch64	
+    - generic-aarch64
     - genericx86-64-ext
     - intel-nuc
 version: 1.0.0
