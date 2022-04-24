@@ -19,6 +19,7 @@
         graph_height: '20em',
         chart_width: '10em'
     }
+    NETDATA.options.current.stop_updates_when_focus_is_lost = false;
   </script>
   <script type="text/javascript" src="../netdata/dashboard.js"></script>
   <script type="text/javascript" src="https://unpkg.com/balena-sdk@16.19.8/es2015/balena-browser.min.js"></script>
@@ -42,11 +43,41 @@
       </div>
   </div>
   <div id="netdata-charts">
+    <h2>Starknet Node Metrics </h2>
+    <div class="netdata-chart-row">
+      <div class="netdata-container-easypiechart" style="margin-right: 10px; width: 9%;" data-netdata="system.swap" data-dimensions="used" data-append-options="percentage" data-chart-library="easypiechart" data-title="Used Swap" data-units="%" data-easypiechart-max-value="100" data-width="9%" data-points="480" data-colors="#DD4400" role="application">
+        <div id="easypiechart-system.swap-1-chart" class="netdata-chart netdata-easypiechart-chart">
+        <span class="easyPieChartLabel" style="font-size: 11.0344px; top: 35px;">6.26</span>
+        <span class="easyPieChartTitle" style="font-size: 6px; top: 21px;">Used Swap</span>
+        <span class="easyPieChartUnits" style="font-size: 5px; top: 53px;">%</span>
+        <canvas height="165" width="165" style="height: 82.7578px; width: 82.7578px;"></canvas>
+      </div>
+    </div>
+    <div class="netdata-container-easypiechart" style="margin-right: 10px; width: 11%;" data-netdata="system.io" data-dimensions="in" data-chart-library="easypiechart" data-title="Disk Read" data-width="11%" data-points="480" data-common-units="system.io.mainhead" role="application">
+      <div id="easypiechart-system.io-2-chart" class="netdata-chart netdata-easypiechart-chart"><span class="easyPieChartLabel" style="font-size: 13.4865px; top: 43px;">0.00</span>
+        <span class="easyPieChartTitle" style="font-size: 7px; top: 26px;">Disk Read</span>
+        <span class="easyPieChartUnits" style="font-size: 6px; top: 65px;">MiB/s</span>
+        <canvas height="202" width="202" style="height: 101.148px; width: 101.148px;"></canvas>
+      </div>
+    </div>
+    <div class="netdata-container-easypiechart" style="margin-right: 10px; width: 11%;" data-netdata="system.io" data-dimensions="out" data-chart-library="easypiechart" data-title="Disk Write" data-width="11%" data-points="480" data-common-units="system.io.mainhead" role="application">
+      <div id="easypiechart-system.io-3-chart" class="netdata-chart netdata-easypiechart-chart">
+        <span class="easyPieChartLabel" style="font-size: 13.4865px; top: 43px;">0.0</span>
+        <span class="easyPieChartTitle" style="font-size: 7px; top: 26px;">Disk Write</span><span class="easyPieChartUnits" style="font-size: 6px; top: 65px;">MiB/s</span>
+        <canvas height="202" width="202" style="height: 101.148px; width: 101.148px;"></canvas>
+      </div>
+    </div>
+    <div class="netdata-container-gauge" style="margin-right: 10px; width: 20%;" data-netdata="system.cpu" data-chart-library="gauge" data-title="CPU" data-units="%" data-gauge-max-value="100" data-width="20%" data-points="480" data-colors="#22AA99" role="application">
+      <div id="gauge-system.cpu-4-chart" class="netdata-chart netdata-gauge-chart"><canvas class="gaugeChart" id="gauge-system.cpu-4-canvas" style="width: 183.906px; height: 110.344px;" height="356" width="594"></canvas><span class="gaugeChartLabel" style="font-size: 22px; top: 28px;">4.8</span><span class="gaugeChartTitle" style="font-size: 10px; top: 0px;">CPU</span><span class="gaugeChartUnits" style="font-size: 9px;">%</span><span class="gaugeChartMin" style="font-size: 17px;">0.0</span><span class="gaugeChartMax" style="font-size: 17px;">100.0</span></div></div><div class="netdata-container-easypiechart" style="margin-right: 10px; width: 11%;" data-netdata="system.net" data-dimensions="received" data-chart-library="easypiechart" data-title="Net Inbound" data-width="11%" data-points="480" data-common-units="system.net.mainhead" role="application"><div id="easypiechart-system.net-5-chart" class="netdata-chart netdata-easypiechart-chart"><span class="easyPieChartLabel" style="font-size: 13.4865px; top: 43px;">1.36</span><span class="easyPieChartTitle" style="font-size: 7px; top: 26px;">Net Inbound</span><span class="easyPieChartUnits" style="font-size: 6px; top: 65px;">megabits/s</span><canvas height="202" width="202" style="height: 101.148px; width: 101.148px;"></canvas></div></div><div class="netdata-container-easypiechart" style="margin-right: 10px; width: 11%;" data-netdata="system.net" data-dimensions="sent" data-chart-library="easypiechart" data-title="Net Outbound" data-width="11%" data-points="480" data-common-units="system.net.mainhead" role="application"><div id="easypiechart-system.net-6-chart" class="netdata-chart netdata-easypiechart-chart"><span class="easyPieChartLabel" style="font-size: 13.4865px; top: 43px;">50.0</span><span class="easyPieChartTitle" style="font-size: 7px; top: 26px;">Net Outbound</span><span class="easyPieChartUnits" style="font-size: 6px; top: 65px;">megabits/s</span><canvas height="202" width="202" style="height: 101.148px; width: 101.148px;"></canvas></div></div><div class="netdata-container-easypiechart" style="margin-right: 10px; width: 9%;" data-netdata="system.ram" data-dimensions="used|buffers|active|wired" data-append-options="percentage" data-chart-library="easypiechart" data-title="Used RAM" data-units="%" data-easypiechart-max-value="100" data-width="9%" data-points="480" data-colors="#EE9911" role="application"><div id="easypiechart-system.ram-7-chart" class="netdata-chart netdata-easypiechart-chart"><span class="easyPieChartLabel" style="font-size: 11.0344px; top: 35px;">26.7</span><span class="easyPieChartTitle" style="font-size: 6px; top: 21px;">Used RAM</span><span class="easyPieChartUnits" style="font-size: 5px; top: 53px;">%</span><canvas height="165" width="165" style="height: 82.7578px; width: 82.7578px;"></canvas></div></div>
+    </div>
     <h2>Pathfinder Metrics</h1>
     <div data-netdata="pathfinder_Starknet_Node.syncing"></div>
     <div data-netdata="pathfinder_Starknet_Node.block_number"></div>
   </div>
-  <h2> Node Logs</h1>
+  <h2>Starknet Node Logs</h1>
   <textarea id="logs" readOnly="true"></textarea>
+  <p>
+    A project by <a href="https://twitter.com/odyslam_">Odysseas.eth</a>, funded by <a href="https://twitter.com/StarkWareLtd">Starkware</a>
+  </p>
 </body>
 </html>

@@ -4,6 +4,9 @@
 	font-family: 'IBM Plex Sans';
 	font-size: 100%;
 }
+h1 {
+	text-align: center;
+}
 h2 {
   display: block;
 	text-align:center;
