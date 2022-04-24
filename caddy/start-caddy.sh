@@ -17,14 +17,12 @@ curl -f -s -X PATCH --header "Content-Type:application/json" \
 # Start streaming logs to a file that is later loaded via the dashboard
 sh /usr/local/bin/stream-logs.sh &
 
-# if [[ -z ${CADDY_PASSWORD} ]]; then
-#   CADDY_PASSWORD="${BALENA_DEVICE_UUID}"
-# fi
-# if [[ -z ${CADDY_USERNAME} ]]; then
-#   export CADDY_USERNAME="starknet"
-# fi
 message "Starting Caddy with the following credentials:"
 echo "USERNAME: ${CADDY_USERNAME}"
 echo "PASSWORD: ${CADDY_PASSWORD}"
+echo
 export CADDY_PASSWORD_HASH=$(caddy hash-password --plaintext ${CADDY_PASSWORD})
+# Add credentials to dashboard, required to load the deviceLogs.txt file
+# Since the website is only loaded if basic AUTH is succesful, the plaintext credentials pose no additional security threat
+sed -i "s/CADDY_PASSWORD/${CADDY_PASSWORD}/g" /root/website/index.js && sed -i "s/CADDY_USERNAME/${CADDY_USERNAME}/g" /root/website/index.js
 caddy run --config /etc/caddy/Caddyfile

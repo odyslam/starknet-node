@@ -4,7 +4,7 @@
   redir / /dashboard/
   basicauth /* {
     {$CADDY_USERNAME} {$CADDY_PASSWORD_HASH}
-}
+  }
   handle_path /netdata/* {
       reverse_proxy netdata:{$NETDATA_PORT:19999}
   }
