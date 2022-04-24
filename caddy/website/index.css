@@ -1,6 +1,18 @@
-h1 {
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+
+* {
+	font-family: 'IBM Plex Sans';
+	font-size: 100%;
+}
+h2 {
   display: block;
 	text-align:center;
+	font-family: 'IBM Plex Sans';
+}
+
+#index-elements {
+	display: flex;
+	justify-content: space-around
 }
 
 #netdata-charts{
@@ -9,7 +21,9 @@ h1 {
 	margin-top:5em;
 	margin-bottom:5em;
 }
-
+#starknet-logo{
+	width:10em;
+}
 #logs {
 	display:block;
 	margin:auto;
