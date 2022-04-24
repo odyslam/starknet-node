@@ -1,15 +1,15 @@
 :80 {
   redir /netdata /netdata/
   redir /dashboard /dashboard/
-  redit / /dashboard/
-  basicauth /dashboard/* {
+  redir / /dashboard/
+  basicauth /* {
     {$CADDY_USERNAME} {$CADDY_PASSWORD_HASH}
 }
   handle_path /netdata/* {
       reverse_proxy netdata:{$NETDATA_PORT:19999}
   }
   handle_path /dashboard/* {
-   root * /root/website/
+   root * /root/website
    file_server
   }
 }
