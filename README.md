@@ -26,15 +26,56 @@ You can also manage your device via balena-cloud:
 
 - `starknet-node`: The starknet node. You can access it's RPC on port `9545`.
 - `netdata`: The monitoring agent. A detailed per-second view of device. You can access the dashboard on port `19999`. The agent is offline and transmits no information to any cloud.
+- `caddy`: Serves the Node Dashboard, offers basic auth and reverse proxy the Netdata Dashboard
+
+## Dashboard
+
+Starknet-Node comes with a simple dashboard that is served by the device. That way, you can quickly inspect it's state, without having to visit balena-cloud.
+
+To access the dashboard:
+- If your computer is in the same local network as the device:
+    - Visit `starknet.local`. If this doesn't work, it's because sometimes `avahi` which is responsible for the `.local` domain translation fails to work. Try the next method.
+    - Visit balena-cloud and find the IP of your device. Type that IP in your browser.
+- Visit balena-cloud and activate `public device URL`. Visit that URL.
+
+### Paths
+- `/` is redirected to `/dashboard/`, where the dashboard is served.
+- `/netdata` is where the Netdata dashboard is served.
+
+## Netdata Pathfinder monitoring
+
+We have implemented an integration between Pathfinder and Netdata, the monitoring agent that is installed on the device. Netdata gathers data from Pathfinder, stores them in it's Time-Series database and visualises them in it's dashboard. We use some of Netdata's charts in the Starknet Node dashboard we described above.
+
+Currently, the ingration gathers two metrics from pathfinder, using it's RPC endpoint:
+- `starknet_syncing`: if `True`, then the chart shows a value of `1`. Otherwise, it's `0`.
+- `starknet_blockNumber`: The latest blockNumber that got verified by the Node.
+
+### Extending the integration
+
+To extend the integration, you need to write very simple python code. Visit `/netdata/pathfinder.chart.py` and perform the following:
+- Define a new Chart
+- Gather data for that Chart
+
+Using `requests`, it's trivial to gather arbitrary data from Pathfinder's API.
+
+Some helpful Documentation:
+- [Python plugins for Netdata](https://learn.netdata.cloud/docs/agent/collectors/python.d.plugin)
+- [How to write a custom python collector](https://learn.netdata.cloud/guides/python-collector)
 
 ## Environment Variables
 
-- `ETH_RPC_URL`: Ethereun endpoint url. e.g `https://eth-mainnet.gateway.pokt.network/v1/XXXXXXX`. Currently the API endpoint is provided and sponsored by Starkware.
-- `RPC_URL`: IP and port at which the node accepts RPC requests. Default: `0.0.0.0:9545`
-- `ETH_PASSWORD`: Password for the ethereum endpoint. Default is empty.
-- `IDLE`: Helper env variable that will idle the `starknet-pathfinder` container instead of running pathfinder. That way, you can `ssh` into the container and debug/test. Default: `0`.
-- `LOCATION`: If `ON`, the device pings a StarkWare website at regular intervals, so that the approximate Node location may be inferred from the HTTP request. StarkWare uses this information to create a map of StarkNet Nodes. StarkWare will not share this information with any 3rd party, and the actual HTTP request does not transmit any information about the device. The location of the device is based solely based on the IP that the HTTP request originates from.
+- `PATHFINDER_ETHEREUM_API_URL`: Ethereun endpoint url. e.g `https://eth-mainnet.gateway.pokt.network/v1/XXXXXXX`. Currently the API endpoint is provided and sponsored by Starkware.
+- `PATHFINDER_HTTP_RPC_ADDRESS`: IP and port at which the node accepts RPC requests. Default: `0.0.0.0:9545`
+- `PATHFINDER_ETHEREUM_API_PASSWORD`: Password for the ethereum endpoint. Default is empty.
+- `NODE_IDLE`: Helper env variable that will idle the `starknet-pathfinder` container instead of running pathfinder. That way, you can `ssh` into the container and debug/test. Default: `0`.
+- `NODE_LOCATION`: If `ON`, the device pings a StarkWare website at regular intervals, so that the approximate Node location may be inferred from the HTTP request. StarkWare uses this information to create a map of StarkNet Nodes. StarkWare will not share this information with any 3rd party, and the actual HTTP request does not transmit any information about the device. The location of the device is based solely based on the IP that the HTTP request originates from.
+-  `NODE_LOCATION_API`: Location API endpoint. Default: `https://starknet.io/rpi-node/`
+-  `CADDY_USERNAME`: Username for the dashboard's basic auth. Default: `starknet`
+-  `CADDY_PASSWORD`: Password for the dashboard's basic auth. Default: `starknet`
 
+## Netdata Monitoring
+
+We have created a small plugin for Netdata, the monitoring agent that we use to check on our device
 ## Test a new device
 
 It's very easy to test a device that is not shown in the list of supported devices.
