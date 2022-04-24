@@ -20,6 +20,8 @@ services:
       NODE_IDLE: 0
       NODE_LOCATION: "ON"
       NODE_LOCATION_API: "https://starknet.io/rpi-node/"
+      CADDY_USERNAME: "starknet"
+      CADDY_PASSWORD: "starknet"
   netdata:
     build: ./netdata
     privileged: true
@@ -30,10 +32,10 @@ services:
     ports:
       - "19999:19999"
     labels:
-      - "io.balena.features.balena-socket=1"
-      - "io.balena.features.procfs=1"
-      - "io.balena.features.supervisor-api=1"
-      - "io.balena.features.sysfs=1"
+      io.balena.features.balena-socket: '1'
+      io.balena.features.procfs: '1'
+      io.balena.features.supervisor-api: '1'
+      io.balena.features.sysfs: '1'
     volumes:
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdatav
@@ -48,12 +50,11 @@ services:
      - "443:443"
     depends_on: ["netdata", "starknet-pathfinder"]
     environment:
-      - DOMAIN: "starknet.local"
-      - PROTOCOL: "http"
-      - CADDY_USERNAME: "starknet"
+      DOMAIN: "starknet.local"
+      PROTOCOL: "http"
+      CADDY_USERNAME: "starknet"
     labels:
-      - "io.balena.features.supervisor-api=true"
-      - "io.balena.features.balena-api=true"
+      io.balena.features.supervisor-api: '1'
     volumes:
       - caddy-config:/config
       - caddy-data:/data
