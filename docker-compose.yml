@@ -32,8 +32,8 @@ services:
     labels:
       io.balena.features.balena-socket: '1'
       io.balena.features.procfs: '1'
-      io.balena.features.supervisor-api: '1'
       io.balena.features.sysfs: '1'
+      io.balena.features.supervisor-api: '1'
     volumes:
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdatav
@@ -52,8 +52,14 @@ services:
       PROTOCOL: "http"
       CADDY_USERNAME: "starknet"
       CADDY_PASSWORD: "starknet"
+    volumes:
+      - caddy-config:/config
+      - caddy-data:/data
+  logs-streamer:
+    build: ./logs-streamer
+    restart: 'unless-stopped'
+    depends_on: ["caddy"]
     labels:
       io.balena.features.supervisor-api: '1'
     volumes:
-      - caddy-config:/config
       - caddy-data:/data
