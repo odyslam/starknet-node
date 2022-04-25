@@ -2,15 +2,16 @@
   redir /netdata /netdata/
   redir /dashboard /dashboard/
   redir / /dashboard/
+  handle_path /supervisor/logs {
+     rewrite * /v2/journal-logs
+     rewrite * ?apikey={$BALENA_SUPERVISOR_API_KEY}
+    reverse_proxy {$BALENA_SUPERVISOR_ADDRESS}
+}
   handle_path /netdata/* {
       reverse_proxy netdata:{$NETDATA_PORT:19999}
   }
   handle_path /dashboard/* {
    root * /root/website
-   file_server
-  }
-  handle_path /device* {
-   root * /data/caddy/device
    file_server
   }
 }

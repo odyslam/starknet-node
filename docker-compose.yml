@@ -52,14 +52,8 @@ services:
       PROTOCOL: "http"
       CADDY_USERNAME: "starknet"
       CADDY_PASSWORD: "starknet"
-    volumes:
-      - caddy-config:/config
-      - caddy-data:/data
-  logs-streamer:
-    build: ./logs-streamer
-    restart: 'unless-stopped'
-    depends_on: ["caddy"]
     labels:
       io.balena.features.supervisor-api: '1'
     volumes:
+      - caddy-config:/config
       - caddy-data:/data
