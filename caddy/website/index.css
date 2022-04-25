@@ -33,5 +33,12 @@ h2 {
 	width: 80%;
 	height: 25em;
 	font-weight: bold;
+	margin-top: 5em;
+	margin-bottom: 5em;
+}
+
+.footnote {
+	text-align: center;
+	font-size: 50%;
 }
 
