@@ -5,7 +5,6 @@ USER root
 RUN apk add --no-cache util-linux curl
 
 COPY start-node-location.sh /usr/local/bin/start-node-location.sh
-COPY start-node-location.sh /usr/local/bin/start-node-location.sh
 COPY ping.sh /usr/local/bin/ping.sh
 
 RUN chmod +x /usr/local/bin/ping.sh && \
