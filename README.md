@@ -30,6 +30,8 @@ You can also manage your device via balena-cloud:
 
 ## Dashboard
 
+![dashboard](https://user-images.githubusercontent.com/13405632/165237550-cd2b1540-daed-4679-9cd4-eb812cfdafdb.png)
+
 Starknet-Node comes with a simple dashboard that is served by the device. That way, you can quickly inspect it's state, without having to visit balena-cloud.
 
 To access the dashboard:
@@ -37,6 +39,11 @@ To access the dashboard:
     - Visit `starknet.local`. If this doesn't work, it's because sometimes `avahi` which is responsible for the `.local` domain translation fails to work. Try the next method.
     - Visit balena-cloud and find the IP of your device. Type that IP in your browser.
 - Visit balena-cloud and activate `public device URL`. Visit that URL.
+
+The dashboard offers:
+- Helpful links for the device and docs. It links to the Netdata Dashboard of the device (served locally) and the dashboard of your balena-cloud account
+- Charts with **live** metrics from the device. It shows an overview of the device (e.g RAM), as also pathfinder-specific metrics
+- Logs that are being streamed by the device, directly to the browser. *This feature is very flakey and we want to improve it*.
 
 ### Paths
 - `/` is redirected to `/dashboard/`, where the dashboard is served.
@@ -99,3 +106,4 @@ You may want to explore **boot from SSD**, as that would considerably speed-up t
 
 - [Run your first Starknet Node, by DZupp](https://mirror.xyz/0x83857601C1cFA057F2576b343c563BDB9A4C9975/8HfjYCkbid2vlayxyPtSD9_wtb9a-wHb1uOENsAOwng)
 - [Pathfinder](https://github.com/eqlabs/pathfinder)
+- Starkware for providing a Grant and sponsoring the Alchemy ETH RPC endpoint
