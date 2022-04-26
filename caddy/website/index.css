@@ -15,7 +15,11 @@ h2 {
 
 #index-elements {
 	display: flex;
-	justify-content: space-around
+	justify-content: left;
+}
+
+ul {
+	margin: auto;
 }
 
 #netdata-charts{
@@ -39,6 +43,6 @@ h2 {
 
 .footnote {
 	text-align: center;
-	font-size: 80%;
+	font-size: 100%;
 }
 

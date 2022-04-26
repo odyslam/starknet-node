@@ -1,16 +1,34 @@
+let logsStreaming = false;
+NETDATA.options.current.stop_updates_when_focus_is_lost = false;
 window.onload = async () => {
+  const textarea = document.getElementById('logs');
   try {
-    streamLogs();
+    streamLogs(textarea);
   } catch (error) {
     console.error(error);
     location.reload();
   }
+  setInterval(checkLogStream, 1000 * 10, textarea);
+
 }
 
+function checkLogStream(textarea) {
+  if (!logsStreaming || textarea.value == "") {
+    streamLogs();
+  }
+}
 
-async function streamLogs() {
-  const textarea = document.getElementById('logs');
-  fetch('../supervisor/logs', {method: 'POST'})
+async function streamLogs(textarea) {
+  data = {"follow": true, "all": false, "format": "short"};
+  fetch('../supervisor/logs', {
+    method: 'POST', body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      'Connection': 'keep-alive',
+      'Transfer-Encoding': 'chunked'
+
+    }
+  })
     // Retrieve its body as ReadableStream
     .then(response => {
       const reader = response.body.getReader();
@@ -22,16 +40,17 @@ async function streamLogs() {
               // When no more data needs to be consumed, close the stream
               if (done) {
                 controller.close();
-                if (textarea.value == "") {
-                  textarea.value = "Could not stream logs. If the starknet node runs on regular Docker and not balena, that is normal.\n If it runs on balena, please refresh or open a GH issue"
-                }
-                else {
-                  window.alert("Starknet Node can't stream logs from the balena supervisor. Please refresh the dashboard. If the error persists, please open a GH issue");
-                }
+                logsStreaming = false;
                 return;
               }
               // Enqueue the next data chunk into our target stream
-              textarea.value = String.fromCharCode.apply(null, value);
+              let line = String.fromCharCode.apply(null, value);
+              // For some reason, the test is so slow, the function fails completely
+              // if (!'/balenad|kernel|NetworkManager|avahi|systemd/'.test(line)) {
+              //   textarea.value += line;
+              // }
+              textarea.value += line;
+              logsStreaming = true;
               if (textarea != document.activeElement) {
                 textarea.scrollTop = textarea.scrollHeight;
               }

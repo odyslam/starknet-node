@@ -27,7 +27,7 @@
 </head>
 <body>
   <div id="index">
-      <h1>Starknet Node</h1>
+      <h1>StarkNet Node</h1>
       <h2>Helpful Links</h2>
       <div id="index-elements">
         <img id="starknet-logo" src="https://starkware.co/wp-content/uploads/2021/09/SN-logo.svg">
@@ -35,13 +35,14 @@
           <li><a href="../netdata/" target="_blank" >Netdata Dashboard</a>: The Netdata Dashboard for this device</li>
           <li><a href="https://dashboard.balena-cloud.com/" target="_blank" >Balena-cloud Dashboard</a>: The balena-cloud dashboard for this device</li>
           <li><a href="https://github.com/eqlabs/pathfinder" target="_blank" >Pathfinder GitHub</a>:Code and Documentation about Pathfinder, the Starknet Node</li>
-          <li><a href="https://github.com/odyslam/starknet-node" target="_blank">Starknet Node GitHub</a>:Code and Documentation about this Starknet Node app</li>
+          <li><a href="https://github.com/odyslam/starknet-node" target="_blank">StarkNet Node GitHub</a>:Code and Documentation about this Starknet Node app</li>
           <li><a href="https://www.balena.io/docs/learn/welcome/introduction/" target="_blank" >Balena Documentation</a>: Documentation about balena</li>
         </ul>
       </div>
   </div>
   <div id="netdata-charts">
     <h2>Starknet Node Metrics </h2>
+    <p style="text-align:center;">📍 Pro tip: if charts are not loading, refresh the dashboard 🥲</p>
     <div class="netdata-chart-row">
       <div class="netdata-container-easypiechart" style="margin-right: 10px; width: 9%;" data-netdata="system.swap" data-dimensions="used" data-append-options="percentage" data-chart-library="easypiechart" data-title="Used Swap" data-units="%" data-easypiechart-max-value="100" data-width="9%" data-points="480" data-colors="#DD4400" role="application">
         <div id="easypiechart-system.swap-1-chart" class="netdata-chart netdata-easypiechart-chart">
@@ -72,7 +73,8 @@
     <div data-netdata="pathfinder_Starknet_Node.syncing"></div>
     <div data-netdata="pathfinder_Starknet_Node.block_number"></div>
   </div>
-  <h2>Starknet Node Logs</h1>
+  <h2>StarkNet Node Logs</h1>
+  <p style="text-align:center;">📍 Pro tip: iflogs are not loading, refresh the page. The logs streaming functionality is extremely flakey and we expect to rapidly iterate o it </p>
   <textarea id="logs" readOnly="true"></textarea>
   <p class="footnote" >
     A project by <a href="https://twitter.com/odyslam_">Odysseas.eth</a>, funded by <a href="https://twitter.com/StarkWareLtd">Starkware</a>
