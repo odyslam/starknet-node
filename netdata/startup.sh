@@ -2,6 +2,15 @@
 # File largely based on https://github.com/netdata/netdata/blob/master/packaging/docker/run.sh
 set -e
 
+message() {
+
+    echo
+    echo -----------------------------------------------------------------------------
+    echo -e "$@"
+    echo -----------------------------------------------------------------------------
+    echo
+}
+
 if [ ! "${DO_NOT_TRACK:-0}" -eq 0 ] || [ -n "$DO_NOT_TRACK" ]; then
   touch /etc/netdata/.opt-out-from-anonymous-statistics
 fi
@@ -47,7 +56,5 @@ chown -R netdata:netdata /var/lib/netdata
 chown -R netdata:root /var/lib/netdata/cloud.d
 chmod -R 770 /var/lib/netdata/cloud.d/
 
-echo "Starting Netdata with silent output (stdout)"
-echo "Netdata will only output errors (stderr)"
-echo "~Happy Monitoring"
+message "Starting Netdata with silent output (stdout)\nNetdata will only output errors (stderr)\n~Happy Monitoring"
 exec /usr/sbin/netdata -u "${DOCKER_USR}" -D -s /host -p "${NETDATA_PORT}" -W set web "web files group" root -W set web "web files owner" root "$@" > /dev/null 2>&1

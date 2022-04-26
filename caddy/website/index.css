@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+
+* {
+	font-family: 'IBM Plex Sans';
+	font-size: 100%;
+}
+h1 {
+	text-align: center;
+}
+h2 {
+  display: block;
+	text-align:center;
+	font-family: 'IBM Plex Sans';
+}
+
+#index-elements {
+	display: flex;
+	justify-content: left;
+}
+
+ul {
+	margin: auto;
+}
+
+#netdata-charts{
+	margin: auto;
+	width:80%;
+	margin-top:5em;
+	margin-bottom:5em;
+}
+#starknet-logo{
+	width:10em;
+}
+#logs {
+	display:block;
+	margin:auto;
+	width: 80%;
+	height: 25em;
+	font-weight: bold;
+	margin-top: 5em;
+	margin-bottom: 5em;
+}
+
+.footnote {
+	text-align: center;
+	font-size: 100%;
+}
+

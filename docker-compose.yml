@@ -4,7 +4,8 @@ volumes:
   netdatacache:
   netdatalib:
   pathfinder:
-
+  caddy-config:
+  caddy-data:
 services:
   starknet-pathfinder:
     build: ./pathfinder
@@ -13,7 +14,12 @@ services:
     volumes:
       - pathfinder:/usr/share/pathfinder
     environment:
-      ETH_RPC_URL: "https://eth-mainnet.alchemyapi.io/v2/4Y_wlm-04oTrBmdqATgedTJcRqwLMEW6"
+      PATHFINDER_HTTP_RPC_ADDRESS: "0.0.0.0:9545"
+      PATHFINDER_ETHEREUM_API_URL: "https://eth-mainnet.alchemyapi.io/v2/3QYDn_ym4Yjcx4TEtGMVKAhUQh-ZwAF3"
+      PATHFINDER_ETHEREUM_API_PASSWORD: ""
+      NODE_IDLE: 0
+      NODE_LOCATION: "ON"
+      NODE_LOCATION_API: "https://starknet.io/rpi-node/"
   netdata:
     build: ./netdata
     privileged: true
@@ -24,10 +30,30 @@ services:
     ports:
       - "19999:19999"
     labels:
-      - "io.balena.features.balena-socket=1"
-      - "io.balena.features.procfs=1"
-      - "io.balena.features.supervisor-api=1"
-      - "io.balena.features.sysfs=1"
+      io.balena.features.balena-socket: '1'
+      io.balena.features.procfs: '1'
+      io.balena.features.sysfs: '1'
+      io.balena.features.supervisor-api: '1'
     volumes:
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdatav
+    depends_on:
+      - "starknet-pathfinder"
+  caddy:
+    build: ./caddy
+    restart: 'unless-stopped'
+    ports:
+     - "80:80"
+     - "2019:2019"
+     - "443:443"
+    depends_on: ["netdata", "starknet-pathfinder"]
+    environment:
+      DOMAIN: "starknet.local"
+      PROTOCOL: "http"
+      CADDY_USERNAME: "starknet"
+      CADDY_PASSWORD: "starknet"
+    labels:
+      io.balena.features.supervisor-api: '1'
+    volumes:
+      - caddy-config:/config
+      - caddy-data:/data

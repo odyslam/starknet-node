@@ -3,7 +3,6 @@ FROM eqlabs/pathfinder:latest
 USER root
 
 RUN apk add --no-cache util-linux curl
-COPY start-node-location.sh /usr/local/bin/start-node-location.sh
 
 COPY start-node-location.sh /usr/local/bin/start-node-location.sh
 COPY ping.sh /usr/local/bin/ping.sh
@@ -19,7 +18,6 @@ RUN  uuidgen >> /var/location_uuid && chmod 755 /var/location_uuid
 
 USER pathfinder
 
-EXPOSE 9545
 WORKDIR /usr/share/pathfinder/data
 
 ENTRYPOINT ["sh", "/usr/local/bin/start-node-location.sh"]
