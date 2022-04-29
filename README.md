@@ -17,7 +17,7 @@ The easiest way to deploy a Starknet Node on a Raspberry pi and begin verifying 
 - Let it boot 🔜
 - Visit balena-cloud and view the logs of the device
 
-balena will automatically build the application from the repository, package it into Docker containers and deliver it to your Raspberry pi to run it. Building the containers on the cloud server is much faster than building them on the device itself.
+Balena will automatically build the application from the repository, package it into Docker containers and deliver it to your Raspberry pi. Building the containers on the cloud server is much faster than building them on the device itself.
 
 You can also manage your device via balena-cloud:
 ![image](https://user-images.githubusercontent.com/13405632/158053365-c0d7ac4b-3acf-4cf2-9e36-45b7400027ca.png)
@@ -35,10 +35,10 @@ You can also manage your device via balena-cloud:
 Starknet-Node comes with a simple dashboard that is served by the device. That way, you can quickly inspect it's state, without having to visit balena-cloud.
 
 To access the dashboard:
-- If your computer is in the same local network as the device:
-    - Visit `starknet.local`. If this doesn't work, it's because sometimes `avahi` which is responsible for the `.local` domain translation fails to work. Try the next method.
-    - Visit balena-cloud and find the IP of your device. Type that IP in your browser.
-- Visit balena-cloud and activate `public device URL`. Visit that URL.
+- If your computer is in the same local network as the device, you can either:
+    - Visit `starknet.local`.  If this doesn't work, it's because sometimes `avahi` which is responsible for the `.local` domain translation fails to work
+    - Visit balena-cloud and find the IP of your device. Type that IP in your browser
+- Visit balena-cloud and activate `public device URL`. Visit that URL
 
 The dashboard offers:
 - Helpful links for the device and docs. It links to the Netdata Dashboard of the device (served locally) and the dashboard of your balena-cloud account
@@ -53,13 +53,13 @@ The dashboard offers:
 
 We have implemented an integration between Pathfinder and Netdata, the monitoring agent that is installed on the device. Netdata gathers data from Pathfinder, stores them in it's Time-Series database and visualises them in it's dashboard. We use some of Netdata's charts in the Starknet Node dashboard we described above.
 
-Currently, the ingration gathers two metrics from pathfinder, using it's RPC endpoint:
+Currently, the integration gathers two metrics from pathfinder, using it's RPC endpoint:
 - `starknet_syncing`: if `True`, then the chart shows a value of `1`. Otherwise, it's `0`.
 - `starknet_blockNumber`: The latest blockNumber that got verified by the Node.
 
 ### Extending the integration
 
-To extend the integration, you need to write very simple python code. Visit `/netdata/pathfinder.chart.py` and perform the following:
+To extend the integration, you need to write some simple python code. Open `/netdata/pathfinder.chart.py` and perform the following:
 - Define a new Chart
 - Gather data for that Chart
 
@@ -80,9 +80,6 @@ Some helpful Documentation:
 -  `CADDY_USERNAME`: Username for the dashboard's basic auth. Default: `starknet`
 -  `CADDY_PASSWORD`: Password for the dashboard's basic auth. Default: `starknet`
 
-## Netdata Monitoring
-
-We have created a small plugin for Netdata, the monitoring agent that we use to check on our device
 ## Test a new device
 
 It's very easy to test a device that is not shown in the list of supported devices.
